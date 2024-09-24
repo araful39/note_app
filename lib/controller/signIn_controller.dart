@@ -22,7 +22,6 @@ class SignInController extends GetxController {
           password: passwordController.text,
         );
 
-        await Future.delayed(const Duration(seconds: 2));
         EasyLoading.dismiss();
         EasyLoading.showSuccess('SignIn success!');
         Get.offAll(() => const Home());

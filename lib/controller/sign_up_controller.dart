@@ -36,7 +36,7 @@ class SingUpController extends GetxController {
           'password': passwordController.text, // Consider hashing the password if needed
           'createdAt': FieldValue.serverTimestamp(), // Save the timestamp of creation
         });
-        await Future.delayed(const Duration(seconds: 2));
+
         Get.offAll(() => const SignIn());
         EasyLoading.dismiss();
         EasyLoading.showSuccess('SignUp success!');

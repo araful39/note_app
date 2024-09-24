@@ -17,10 +17,13 @@ class SplashController extends GetxController {
     ever(firebaseUser, nextScreen);
   }
 
-  nextScreen(User? user) {
+  nextScreen(User? user)async {
     if (user == null) {
+      await Future.delayed(const Duration(seconds: 2));
       Get.offAll(() => const SignIn());
+
     } else {
+      await Future.delayed(const Duration(seconds: 2));
       Get.offAll(() => const Home());
     }
   }
