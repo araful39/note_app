@@ -20,9 +20,9 @@ class SignUp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Sign Up",
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.indigo,
                     fontWeight: FontWeight.bold, fontSize:30),
               ),
@@ -37,7 +37,7 @@ class SignUp extends StatelessWidget {
                     TextFormField(
                       validator: (value) =>
                           AppValidator.validateEmptyText("Name", value),
-                      controller: singUpController.firstName,
+                      controller: singUpController.name,
                       expands: false,
                       decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.person),
