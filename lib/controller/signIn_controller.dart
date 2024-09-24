@@ -16,11 +16,11 @@ class SignInController extends GetxController {
     if (key.currentState!.validate()) {
       EasyLoading.show();
       try {
-        // UserCredential userCredential =
-        //     await FirebaseAuth.instance.signInWithEmailAndPassword(
-        //   email: emailController.text,
-        //   password: passwordController.text,
-        // );
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
 
         await Future.delayed(const Duration(seconds: 2));
         EasyLoading.dismiss();
