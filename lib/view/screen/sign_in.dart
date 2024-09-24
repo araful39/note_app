@@ -89,7 +89,7 @@ class SignIn extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   Text("already_have_account".tr),
+                   Text("Create a account?"),
                   GestureDetector(
                       onTap: () {
                         Get.to(() => const SignUp());

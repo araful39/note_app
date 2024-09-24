@@ -3,10 +3,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:note_app/model/notes_model.dart';
+import 'package:note_app/model/user_model.dart';
 import 'package:note_app/view/screen/sign_in.dart';
 
 class HomeController extends GetxController {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUserData();
+  }
+
+  Rx<UserModel> user = UserModel().obs;
   Stream<List<NoteModel>> getNotes() {
     return firestore.collection('notes').snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
@@ -26,7 +34,23 @@ class HomeController extends GetxController {
     } catch (e) {
       EasyLoading.dismiss();
       EasyLoading.showError('Logout failed. Please try again.');
+    }
+  }
 
+  void fetchUserData() async {
+    try {
+      User? currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        DocumentSnapshot userData = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser.uid)
+            .get();
+        if (userData.exists) {
+          user.value = UserModel.fromDocumentSnapshot(userData);
+        }
+      }
+    } catch (e) {
+      print('Error fetching user data: $e');
     }
   }
 
@@ -38,6 +62,7 @@ class HomeController extends GetxController {
       Get.snackbar('Error', 'Failed to add note: $e');
     }
   }
+
   Future<void> deleteNote(String id) async {
     try {
       await firestore.collection('notes').doc(id).delete();

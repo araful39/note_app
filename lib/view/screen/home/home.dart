@@ -28,11 +28,15 @@ class Home extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: PopupMenuButton<String>(
-              child:  const Card(
+              child: const Card(
                 color: Colors.white,
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text("Lang",style: TextStyle(color: Colors.indigo,fontWeight: FontWeight.bold),),
+                  child: Text(
+                    "Lang",
+                    style: TextStyle(
+                        color: Colors.indigo, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
               onSelected: (String value) {
@@ -72,69 +76,77 @@ class Home extends StatelessWidget {
             itemCount: notes.length,
             itemBuilder: (context, index) {
               final note = notes[index];
-              return ListTile(
-                title: Text(note.title),
-                subtitle: Text(note.description),
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.red),
-                  onPressed: () {
-                    // Show a confirmation dialog before deleting the note
-                    Get.dialog(
-                      AlertDialog(
-                        title: Text('delete_note'.tr), // Translation
-                        content: Text('delete_confirmation'.tr), // Translation
-                        actions: [
-                          TextButton(
-                            onPressed: () => Get.back(),
-                            child: Text('cancel'.tr), // Translation
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              homeController.deleteNote(note.id);
-                              Get.back();
-                            },
-                            child: Text('delete'.tr), // Translation
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+              return Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  tileColor: Colors.indigo.withOpacity(0.7),
+                  title: Text(
+                    note.title,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    note.description,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () {
+                      Get.dialog(
+                        AlertDialog(
+                          title: Text('delete_note'.tr), // Translation
+                          content:
+                              Text('delete_confirmation'.tr), // Translation
+                          actions: [
+                            TextButton(
+                              onPressed: () => Get.back(),
+                              child: Text('cancel'.tr), // Translation
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                homeController.deleteNote(note.id);
+                                Get.back();
+                              },
+                              child: Text('delete'.tr), // Translation
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
               );
             },
           );
         },
       ),
-      floatingActionButton: IconButton(
-        style: IconButton.styleFrom(backgroundColor: Colors.indigo),
-        onPressed: () {
-          Get.dialog(
-            AlertDialog(
-              title: Text('add_note'.tr), // Translation
-              content: const AddNoteForm(),
-              actions: [
-                TextButton(
-                  onPressed: () => Get.back(),
-                  child: Text('cancel'.tr), // Translation
-                ),
-              ],
-            ),
-          );
-        },
-        icon: const Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.indigo,
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Get.dialog(
+              AlertDialog(
+                title: Text('add_note'.tr), // Translation
+                content: const AddNoteForm(),
+                actions: [
+                  TextButton(
+                    onPressed: () => Get.back(),
+                    child: Text('cancel'.tr), // Translation
+                  ),
+                ],
+              ),
+            );
+          }),
     );
   }
 }
-
-
-
-
-
-
-
-
-

@@ -9,8 +9,9 @@ class Splash extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(SplashController());
     return  Scaffold(
+      backgroundColor: Colors.indigo,
       body: Center(
-        child: Text('welcome'.tr,style: TextStyle(fontSize: 30,color: Colors.indigo),),
+        child: Text('Welcome To\n Note App'.tr,style: TextStyle(fontSize: 40,color:Colors.white ),),
       ),
     );
   }
