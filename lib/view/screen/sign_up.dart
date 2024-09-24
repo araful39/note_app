@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:note_app/constant/validate.dart';
-import 'package:note_app/controller/signUp_controller.dart';
+import 'package:note_app/controller/sign_up_controller.dart';
 import 'package:note_app/view/common_widget/elevated_button.dart';
 import 'package:note_app/view/screen/sign_in.dart';
+
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
 
@@ -20,67 +21,60 @@ class SignUp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                "Sign Up",
-                style: TextStyle(
+              Text(
+                "sign_up".tr, // Translation
+                style: const TextStyle(
                   color: Colors.indigo,
-                    fontWeight: FontWeight.bold, fontSize:30),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
               ),
-
-              const SizedBox(
-                height:20,
-              ),
+              const SizedBox(height: 20),
               Form(
                 key: signUpFormKey,
                 child: Column(
                   children: [
                     TextFormField(
                       validator: (value) =>
-                          AppValidator.validateEmptyText("Name", value),
-                      controller: singUpController.name,
-                      expands: false,
-                      decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.person),
-                          hintStyle: TextStyle(color:Colors.black),
-                          hintText: "Name"),
+                          AppValidator.validateEmptyText("name".tr, value), // Translation
+                      controller: singUpController.nameController,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.person),
+                        hintStyle: const TextStyle(color: Colors.black),
+                        hintText: "name".tr, // Translation
+                      ),
                     ),
-                    const SizedBox(
-                      height:15,
-                    ),
+                    const SizedBox(height: 15),
                     TextFormField(
                       validator: (value) => AppValidator.validateEmail(value),
-                      controller: singUpController.email,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.email),
-                        hintText: "Email",
-                        hintStyle: TextStyle(color: Colors.black),
+                      controller: singUpController.emailController,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.email),
+                        hintText: "email".tr, // Translation
+                        hintStyle: const TextStyle(color: Colors.black),
                       ),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     TextFormField(
                       validator: (value) =>
-                          AppValidator.validateEmptyText("Phone Number", value),
-                      controller: singUpController.phoneNumber,
+                          AppValidator.validateEmptyText("phone_number".tr, value), // Translation
+                      controller: singUpController.phoneNumberController,
                       keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.phone),
-                        hintText: "Phone Number",
-                        hintStyle: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.phone),
+                        hintText: "phone_number".tr, // Translation
+                        hintStyle: const TextStyle(color: Colors.black),
                       ),
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     Obx(() => TextFormField(
                       validator: (value) =>
                           AppValidator.validatePassword(value),
-                      controller: singUpController.password,
+                      controller: singUpController.passwordController,
                       obscureText: singUpController.hidePassword.value,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.key),
-                        hintText: "Password",
+                        hintText: "password".tr, // Translation
                         suffixIcon: IconButton(
                           onPressed: () {
                             singUpController.hidePassword.value =
@@ -93,16 +87,13 @@ class SignUp extends StatelessWidget {
                         hintStyle: const TextStyle(color: Colors.black),
                       ),
                     )),
-
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     SizedBox(
                       width: Get.width,
                       child: CustomElevatedButton(
-                        child: const Text(
-                         "Sign Up",
-                          style: TextStyle(color:Colors.white),
+                        child: Text(
+                          "sign_up_button".tr, // Translation
+                          style: const TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
                           singUpController.signUp(signUpFormKey);
@@ -112,25 +103,25 @@ class SignUp extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Al Ready Have An Account"),
+                  Text("already_have_account".tr), // Translation
                   GestureDetector(
-                      onTap: () {
-                        Get.to(() => const SignIn());
-                      },
-                      child: Text(
-                        "Sign In",
-                        style: TextStyle(
-                            color: Colors.indigo,
-                            fontWeight: FontWeight.bold),
-                      ))
+                    onTap: () {
+                      Get.to(() => const SignIn());
+                    },
+                    child: Text(
+                      "sign_in".tr, // Translation
+                      style: const TextStyle(
+                        color: Colors.indigo,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

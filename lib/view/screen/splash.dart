@@ -8,9 +8,9 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(SplashController());
-    return const Scaffold(
+    return  Scaffold(
       body: Center(
-        child: Text("Welcome",style: TextStyle(fontSize: 30,color: Colors.indigo),),
+        child: Text('welcome'.tr,style: TextStyle(fontSize: 30,color: Colors.indigo),),
       ),
     );
   }

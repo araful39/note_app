@@ -22,7 +22,7 @@ class SignIn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Sign In",
+                "sign_in".tr,  // Translated text for "Sign In"
                 style: const TextStyle(
                     color: Colors.indigo,
                     fontWeight: FontWeight.bold,
@@ -36,31 +36,31 @@ class SignIn extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
-                        validator: AppValidator.validateEmail,
-                        controller: signInController.email,
+                        validator: (value) => AppValidator.validateEmail(value),
+                        controller: signInController.emailController,
                         decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.email),
-                            labelText: "Email",
+                            labelText: "email".tr, // Translated text for "Email"
                             labelStyle: const TextStyle(color: Colors.black)),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
                       Obx(
-                        () => TextFormField(
-                          validator: AppValidator.validatePassword,
-                          controller: signInController.password,
+                            () => TextFormField(
+                          validator: (value) => AppValidator.validatePassword(value),
+                          controller: signInController.passwordController,
                           obscuringCharacter: "*",
                           obscureText: signInController.hidePassword.value,
                           decoration: InputDecoration(
                             helperStyle: const TextStyle(color: Colors.black),
                             prefixIcon: const Icon(Icons.key),
-                            labelText: "Password",
+                            labelText: "password".tr,  // Translated text for "Password"
                             labelStyle: const TextStyle(color: Colors.black),
                             suffixIcon: IconButton(
                               onPressed: () {
                                 signInController.hidePassword.value =
-                                    !signInController.hidePassword.value;
+                                !signInController.hidePassword.value;
                               },
                               icon: signInController.hidePassword.value
                                   ? const Icon(Icons.visibility)
@@ -73,8 +73,8 @@ class SignIn extends StatelessWidget {
                         height: 15,
                       ),
                       CustomElevatedButton(
-                        child: const Text(
-                          'Sign In',
+                        child:  Text(
+                          'sign_in'.tr, // Translated text for "Sign In"
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
@@ -89,14 +89,14 @@ class SignIn extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Dont Have An Account"),
+                   Text("already_have_account".tr),
                   GestureDetector(
                       onTap: () {
                         Get.to(() => const SignUp());
                       },
-                      child: const Text(
-                        "Join Now",
-                        style: TextStyle(
+                      child: Text(
+                        "sign_up".tr,
+                        style: const TextStyle(
                             color: Colors.indigo, fontWeight: FontWeight.bold),
                       ))
                 ],
@@ -108,3 +108,10 @@ class SignIn extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+

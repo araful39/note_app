@@ -15,7 +15,7 @@ class AppValidator {
     if (!GetUtils.isEmail(value)) {
       return 'Enter a valid email';
     }
-    return null; // Return null if valid
+    return null;
   }
 
   static String? validatePassword(String? value) {
